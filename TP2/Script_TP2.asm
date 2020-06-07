@@ -5,7 +5,7 @@
 .equ LED_PIN = 3  ;conecto led en PB3
 .equ BTN_PIN = 2  ; conecto boton en PD2
 sbi DDRB, LED_PIN ; declaro a PB3 como salida
-call activate_portd_pullup ; activa resistencias de pullup en PORTD
+;call activate_portd_pullup ; activa resistencias de pullup en PORTD
 cbi DDRD, BTN_PIN ; declaro a PD2 como entrada
 ;#################################
 ;Inizializador de stack
