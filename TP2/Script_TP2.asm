@@ -20,22 +20,22 @@ clr r16
 check_press:
   sbis PIND, BTN_PIN
   rjmp check_press
+  call delay
   call turnon_led
   rjmp check_release
 check_release:
   sbic PIND, BTN_PIN
   rjmp check_release
+  call delay
   call turnoff_led
   rjmp check_press
 ;#################################
 ;rutinas de encendido y apagado del LED
 turnon_led:
   sbi PORTB, LED_PIN
-  call delay
   ret
 turnoff_led:
   cbi PORTB, LED_PIN
-  call delay
   ret
 ;;#################################
 ;DELAY de 1ms
