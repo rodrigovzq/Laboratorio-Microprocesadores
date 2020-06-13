@@ -1,4 +1,4 @@
-BTN_PIN.include "m328Pdef.inc"
+.include "m328Pdef.inc"
 
 .equ BTN = 2    ;PD2
 .equ LED_1 = 2   ;PB2
@@ -24,10 +24,15 @@ reset:
   call INIT_HARDW
 
   sbi LED_PORT, LED_1
+;;##########################################
+
+;;###############Main Loop##################
 main:
   nop
   rjmp main
+;;###########################################
 
+;;#############Interrupt Service Routine####################
 parpadeo:
   call debounceINT0
   cbi LED_PORT, LED_1
@@ -47,7 +52,9 @@ debounceINT0:
   sbis BTN_PIN, BTN
   reti
   ret
-;;#################################
+;;#########################################################
+
+;;########################Hardware Config##################
 INIT_INT0:
   push r16
   ;Establece que la interrupcion es por flanco asc de INT0
@@ -69,6 +76,8 @@ INIT_HARDW:
   out DDRD, r16
   pop r16
   ret
+
+;;#################DELAYS###########################
 DELAY_1ms:
   push r17
   push r18
