@@ -1,8 +1,10 @@
-.include "m328Pdef.inc"
+BTN_PIN.include "m328Pdef.inc"
 
-.equ BTN_PIN = 2    ;PD2
-.equ LED1_PIN = 2   ;PB2
-.equ LED2_PIN = 3   ;PB3
+.equ BTN = 2    ;PD2
+.equ LED_1 = 2   ;PB2
+.equ LED_2 = 3   ;PB3
+.equ LED_PORT = PORTB
+.equ BTN_PIN = PIND
 .def COUNTER = r20
 
 .org 0
@@ -20,51 +22,57 @@ reset:
   ;#################################
   call INIT_INT0
   call INIT_HARDW
+
+  sbi LED_PORT, LED_1
 main:
-  sbi PORTB, LED1_PIN
+  nop
   rjmp main
 
 parpadeo:
   call debounceINT0
-  cbi PORTB, LED1_PIN
+  cbi LED_PORT, LED_1
   ldi COUNTER, 5
   loop:
-    sbi PORTB, LED2_PIN
-    call DELAY_1s
-    cbi PORTB, LED2_PIN
-    call DELAY_1s
+    sbi LED_PORT, LED_2
+    call DELAY_500ms
+    cbi LED_PORT, LED_2
+    call DELAY_500ms
     dec COUNTER
     brne loop
-  sbi PORTB, LED1_PIN
+  sbi LED_PORT, LED_1
   reti
 
 debounceINT0:
-  call DELAY_10ms
-  sbis PIND, BTN_PIN
+  call DELAY_1ms
+  sbis BTN_PIN, BTN
   reti
   ret
 ;;#################################
 INIT_INT0:
-  ;Habilita a INT0 a ser interrupcion
-  ldi r16, (1<<INT0)
-  out EIMSK, r16
+  push r16
   ;Establece que la interrupcion es por flanco asc de INT0
   ldi r16, (1<<ISC01)|(1<<ISC00) ; 11 es flanco asc
   sts EICRA, r16
+  ;Habilita a INT0 a ser interrupcion
+  ldi r16, (1<<INT0)
+  out EIMSK, r16
+  pop r16
   sei
   ret
 
 INIT_HARDW:
   ;Pone unos en las posiciones de los pines declarados
-  sbr r16, (1<<LED1_PIN)|(1<<LED2_PIN)
+  push r16
+  sbr r16, (1<<LED_1)|(1<<LED_2)
   out DDRB, r16
-  sbr r16, (1<<BTN_PIN)
+  sbr r16, (1<<BTN)
   out DDRD, r16
+  pop r16
   ret
-DELAY_10ms:
+DELAY_1ms:
   push r17
   push r18
-  ldi r18, 209
+  ldi r18, 21
 L2:
   ldi r17, 255
 L1:
@@ -76,19 +84,23 @@ L1:
   pop r17
   ret
 ;;#################################
-DELAY_1s:
-  ldi r18, 9
+DELAY_500ms:
+  push r16
+  push r17
+  push r18
+  ldi r18, 41
 LOOP3:           ; repite LOOP2 9 veces = 1,00045 s
-  ldi r17, 89
+  ldi r17, 255
 LOOP2:           ; repite LOOP1 por 89 veces x 1249us= 111.16 ms
-  ldi r16, 250
+  ldi r16, 255
 LOOP1:           ; (5x250)-1 =1249us
-  nop
-  nop
   dec r16
   brne LOOP1
   dec r17
   brne LOOP2
   dec r18
   brne LOOP3
+  pop r18
+  pop r17
+  pop r16
   ret
