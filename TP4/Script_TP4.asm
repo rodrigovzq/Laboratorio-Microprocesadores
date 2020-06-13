@@ -23,12 +23,11 @@ reset:
   call INIT_INT0
   call INIT_HARDW
 
-  sbi LED_PORT, LED_1
 ;;##########################################
 
 ;;###############Main Loop##################
 main:
-  nop
+  sbi LED_PORT, LED_1
   rjmp main
 ;;###########################################
 
