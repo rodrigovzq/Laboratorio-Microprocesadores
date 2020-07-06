@@ -1,0 +1,90 @@
+%COMANDOS DE INFORMACION DE MATERIA
+\newcommand{\codigoMateria}{86.07} %una "macro" para definir codigo de materia
+\newcommand{\nombreMateria}{Laboratorio de Microprocesadores}
+\newcommand{\turno}{Curso 1}
+%INFORMACION DEL TP
+\newcommand{\fechaentrega}{16/Jun/2020}
+\newcommand{\nroTP}{4}
+\newcommand{\descripcionTP}{Interrupción Externa}
+
+
+\newcommand{\resumen}{En el presente trabajo se desarrollará el diseño de programa que consiste en detectar y manejar la funcionalidad de \textbf{interrupción de hardware} del microcontrolador \textit{Atmel MEGA 328P}. Para ello el programa deberá controlar el comportamiento de dos diodos LED a través de una entrada digital que se detectara mediante dichas interrupciones.}
+
+
+
+\newcommand{\tituloTP}{Trabajo práctico Nº \nroTP}
+\newcommand{\facultad}{Facultad de Ingeniería}
+\newcommand{\universidad}{Universidad de Buenos Aires}
+
+%COMANDOS DE DATOS PERSONALES
+
+\newcommand{\nombrerodri}{Vazquez, Rodrigo}
+\newcommand{\padronrodri}{98934}
+\newcommand{\mailrodri}{rvazquez@fi.uba.ar}
+
+%MARGENES
+\marginsize{2cm}{2cm}{1cm}{1.5cm} %izquierda, derecha, arriba, abajo
+
+%HEADERS Y FOOTERS DEL INFORME
+\pagestyle{fancy} % seleccionamos un estilo
+\fancyhead{}
+\fancyfoot{}
+\lhead{\includegraphics[width= 2.5 cm]{imagenes/logofiuba.png}} % texto izquierda de la cabecera
+\rhead{ \codigoMateria\,- \nombreMateria\, - \turno} % texto centro de la cabecera
+\cfoot{\thepage}
+
+%OTRAS OPCIONES DE FORMATO
+\newcommand{\HRule}{\rule{\linewidth}{1mm}} %linea negra de separacion\
+
+\date{} %saca la fecha
+\raggedbottom %evita espacios en blancos grandes entre imagenes y textos
+
+%PORTADA
+\vspace*{-12mm}%esto, no entiendo como funciona pero hace lo que quiero (dejar un pequeño espacio)
+
+
+
+
+\begin{center}
+
+\LARGE{\textsc{ \tituloTP }}\\[.3cm]
+%\HRule \\[0.1cm]
+
+\LARGE{\textbf{\descripcionTP}}\\[0.01cm]
+\small{\fechaentrega}
+
+\HRule\\[0.3cm]
+\end{center}
+
+%\centering{\textbf{\underline{Grupo N°.:}}1} \\
+\begin{tabbing}
+	\begin{tabular}{ l l l }
+	   
+	    \padronrodri & \nombrerodri & \mailrodri\\
+	    
+	\end{tabular}
+\end{tabbing}
+\textbf{\underline{Docentes:}} \\
+\begin{tabbing}
+	\begin{tabular}{ l }
+	   
+	    Campiglio, Guillermo Carlos\\
+	    Stola, Gerardo Luis\\
+	    Cofman, Fernando\\ 
+	    Salaya Velazquez, Juan Guido
+	    
+	\end{tabular}
+\end{tabbing}
+\centering 
+\HRule
+\begin{abstract}
+\justify
+\resumen
+\medskip
+\end{abstract}
+\justify
+\HRule
+\medskip
+
+\tableofcontents
+\pagebreak

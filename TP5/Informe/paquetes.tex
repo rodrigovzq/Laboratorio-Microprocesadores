@@ -1,0 +1,90 @@
+\usepackage[spanish]{babel}
+%\usepackage[utf8x]{inputenc}
+\usepackage{ragged2e} % para justificar el texto
+\usepackage{mathtools}
+\usepackage{graphicx} % para insertar graficos/imagenes
+\usepackage{anysize} % me permite definir los margenes como quiera
+\usepackage{multirow} % para tablas con multicolumna
+\usepackage{fancyhdr} % headers y footers
+\usepackage{upgreek} % letras griegas sin cursiva
+\usepackage{cancel}
+\usepackage{siunitx}
+\setlength{\headheight}{28pt}
+\usepackage{subfig}
+\usepackage{listings}
+\usepackage{media9}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{imakeidx}
+\usepackage{subcaption}
+\usepackage[final]{pdfpages}
+
+
+% Paquetes para dibujar circuitos en LaTeX
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{float} %para que las figuras vayan donde las queremos.
+ \addto\captionsspanish{
+	\renewcommand{\tablename}{Tabla}
+}
+
+
+\usepackage{listings}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+ 
+% \usepackage{amsmath}%modificación de numeración de ecuaciones
+% \numberwithin{equation}{section} %tipo de numeración capitulo.ecuacion
+
+%\usepackage[usenames]{color}
+
+\renewcommand{\arraystretch}{1.2}%cambia el interlineado de las tablas
+
+\usepackage{multicol,multirow}    % Permite poner multicolumnas mediantes:  \begin{multicols}{numero_columnas}   ...   \end{multicols} 
+
+
+% UNIDADES
+
+\newcommand{\kHz}{\ \si{\kilo\hertz}}
+\newcommand{\Hz}{\ \si{\hertz}}
+\newcommand{\MHz}{\ \si{\mega\hertz}}
+\newcommand{\dB}{\ \si{\decibel}}	
+\newcommand{\V}{\ \si{\volt}}
+\newcommand{\mV}{\ \si{\milli\volt}}
+\newcommand{\mA}{\ \si{\milli\ampere}}
+\newcommand{\mW}{\ \si{\milli\watt}}
+\newcommand{\kohm}{\ \si{\kilo\ohm}}
+\newcommand{\megohm}{\  \si{\mega\ohm}}
+\newcommand{\nF}{\ \si{\nano\farad}}
+\newcommand{\uF}{\ \si{\micro\farad}}
+\newcommand{\ms}{\  \si{\milli\second}}
+
+\newcommand{\defeq}{\vcentcolon=}
+
+
+%COLORES
+\definecolor{green}{rgb}{0.4, 1.0, 0.0}
