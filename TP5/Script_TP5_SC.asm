@@ -20,31 +20,28 @@ reset:
   call INIT_HARDW
   call INIT_ADC
 main:
+  call start_conversion
 	call read
 	call output
 	jmp main
 
 
-read:
-  push r16
+start_conversion:
   lds r16, ADCSRA
   sbr r16, 1<<ADSC
   sts ADCSRA, r16 ; arranca la conversion
 check_done:
 	lds r16, ADCSRA
-  sbrs r16, ADIF ;chequea si finalizo, finaliza cuando ADIF=1
+  sbrc r16, ADSC ;chequea si finalizo, finaliza cuando ADSC=0
 	jmp check_done
-  sbr r16, ADIF ; el fabricante indica que se debe anunciar el fin de lectura
-  sts ADCSRA, r16
-  pop r16
 	ret
-output:
-	push r16
+read:
 	lds r16, ADCH
+  ret
+output:
   lsr r16
   lsr r16
   out LED_PORT,r16
-  call delay10ms
   pop r16
   ret
 
@@ -68,17 +65,3 @@ INIT_ADC:
 	pop r16
 	ret
 ;###################################################################
-delay10ms:
-  push r18
-  push r19
-  ldi  r18, 208
-  ldi  r19, 202
-  L1:
-  dec  r19
-  brne L1
-  dec  r18
-  brne L1
-  nop
-  pop r19
-  pop r18
-  ret
