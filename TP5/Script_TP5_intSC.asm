@@ -57,7 +57,7 @@ INIT_HARDW:
 INIT_ADC:
 	push r16
   clr r16
-	ldi r16, (1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0) ; enciende ADC y setea prescaler
+	ldi r16, (1<<ADEN)|(1<<ADIE)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0) ; enciende ADC 
 	sts ADCSRA, r16; activa interrupcion con ADIE => se lee ADIF
   sei ; ACTIVA INTERRUPCIONES GLOBALES
   clr r16

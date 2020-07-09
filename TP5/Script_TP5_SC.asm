@@ -1,3 +1,4 @@
+
 .include "m328Pdef.inc"
 
 .equ LED_PORT = PORTB
@@ -32,7 +33,7 @@ start_conversion:
   sts ADCSRA, r16 ; arranca la conversion
 check_done:
 	lds r16, ADCSRA
-  sbrc r16, ADSC ;chequea si finalizo, finaliza cuando ADSC=0
+  sbrs r16, ADIF ;chequea si finalizo, finaliza cuando ADSC=0 o ADIF=1
 	jmp check_done
 	ret
 read:
@@ -56,8 +57,8 @@ INIT_HARDW:
 	ret
 INIT_ADC:
 	push r16
-	ldi r16, (1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0) ; enciende ADC y setea prescaler
-	sts ADCSRA, r16
+	ldi r16, (1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0) ; enciende ADC
+	sts ADCSRA, r16;setea prescaler
   clr r16
   sts ADCSRB, r16
 	ldi r16, (0<<REFS1)|(1<<REFS0)|(1<<ADLAR)|(0<<MUX3)|(0<<MUX2)|(0<<MUX1)|(0<<MUX0)
