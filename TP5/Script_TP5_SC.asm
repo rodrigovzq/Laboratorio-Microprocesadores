@@ -43,7 +43,6 @@ output:
   lsr r16
   lsr r16
   out LED_PORT,r16
-  pop r16
   ret
 
 ;######################HARDWARE-SETTINGS############################
