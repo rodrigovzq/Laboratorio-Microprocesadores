@@ -1,5 +1,5 @@
 .include "m328Pdef.inc"
-; TODO: NO ANDA
+
 .equ LED_PORT = PORTB
 .equ LED_DDR = DDRB
 .equ POT_BIT = PC0 ;=PCINT8
