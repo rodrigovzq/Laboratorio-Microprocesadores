@@ -1,0 +1,5 @@
+a. La diferencia es que ADC es suma con carry. Es decir, el flag de carry forma
+parte de la operacion que guarda en el registro de destino
+
+b. La diferencia es que INC/DEC no afecta al flag de Carry, haciendo posible que
+se pueda usar dentro de un loop con un registro como contador
