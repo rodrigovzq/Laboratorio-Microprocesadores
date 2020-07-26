@@ -1,0 +1,29 @@
+1) Se plantea controlar dos cámaras frigoríficas "A" y "B" mediante un único programa AVR. Cada cámara cuenta con un compresor propio.
+
+Encendido y apagado de compresores:
+PC0=compresor cámara "A"
+PC2=compresor cámara "B"
+
+Las temperaturas del interior de las dos cámaras se obtiene leyendo el puerto B (PB).
+
+Temperaturas:
+PB0..3=temperatura en la cámara "A"
+PB4..7=temperatura en la cámara "B"
+
+Si una temperatura es mayor que 15°C, en los cuatro bits correspondientes se tiene simplemente 15.
+
+Cuando la temperatura de una cámara supera los 9°C, su compresor se debe encender,  mientras que cuando la temperatura es menor que 7°C su compresor se debe apagar.
+
+Finalmente, cada cámara cuenta con una luminaria que se debe encender al abrise la puerta y apagarse al cerrar- Para el encendido y apagado de las dos luminarias, se debe emplear el mecanismo de interrupciones externas
+
+Pulsadores de puertas:
+PD2 (INT0)=pulsador cámara "A"
+PD3 (INT1)=pulsador cámara "B"
+
+Encendido y apagado de luminarias:
+PC1=luminaria cámara "A"
+PC3=luminaria cámara "B"
+
+2) Una tabla en RAM contiene 256 muestras de 8 bits sin signo. Implementar una subrutina que devuelva el valor máximo, el valor mínimo y cuántas muestras valen cero.
+
+3) Un mensaje de texto se encuentra guardado en RAM en la dirección #msg. Escribe una rutina que copie un carácter (byte) del mensaje en el puerto B y por cada flanco descendiente en PA0 avance al siguiente. Como máximo hay 255 caracteres en #msg y el mensaje termina con el código ASCII $0F.
