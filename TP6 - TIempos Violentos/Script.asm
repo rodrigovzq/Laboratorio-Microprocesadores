@@ -46,7 +46,6 @@ read_BTN:
   ret
 LED_FIJO:
   push r16
-  call INIT_TIMER1
   lds r16, TCCR1B
   andi r16, cs_mask
   ori r16, (0<<CS12)|(0<<CS11)|(0<<CS10)
@@ -87,7 +86,7 @@ BLINK_1024:
 ;###################RUTINA SERVICIO DE INTERRUPCION#############################
 Toggle_LED:
   push r16
-  call INIT_TIMER1
+  call clearOV_Flag
   sbis LED_PORT, LED1
   jmp turnon_LED
   jmp turnoff_LED
@@ -98,7 +97,7 @@ turnon_LED:
 turnoff_LED:
   cbi LED_PORT, LED1
   pop r16
-  ret
+  reti
 ;###############################################################################
 ;###################CONFIGURACION###############################################
 INIT_HARDW:
@@ -115,6 +114,9 @@ INIT_TIMER1:
   sts TCCR1A, r16
   ldi r16, (0<<WGM13)|(0<<WGM12)
   sts TCCR1B, r16
+  pop r16
+clearOV_Flag:
+  push r16
   ldi r16, (1<<TOIE1)
   sts TIMSK1, r16
   sei
