@@ -18,23 +18,21 @@
 ;###############################################################################
 ;###################MACROS######################################################
 .macro init_stack ; [auxGPR]
-	LDI @0, low(RAMEND)
-	OUT SPL, @0
-	LDI @0, high(RAMEND)
-	OUT SPH, @0
+	ldi @0, low(RAMEND)
+	out SPL, @0
+	ldi @0, high(RAMEND)
+	out SPH, @0
 .endm
 ;###############################################################################
+;###################PROGRAMA####################################################
 .org 0
-  jmp Reset
+  jmp onReset
 .org INT0addr
   jmp BRIGHT_DOWN
 .org INT1addr
   jmp BRIGHT_UP
 
-
-
-
-Reset:
+onReset:
   init_stack r16
   call INIT_HARDW
   call INIT_INT
